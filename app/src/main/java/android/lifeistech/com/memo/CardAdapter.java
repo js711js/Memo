@@ -58,6 +58,7 @@ public class CardAdapter extends ArrayAdapter<Card> {
 
         if (item != null) {
             //ここでImageViewとかTextViewに値をセット
+            // comment
 
             viewHoler.titleTextView.setText(item.tittle);
             viewHoler.iconImageView.setImageBitmap(item.image);
