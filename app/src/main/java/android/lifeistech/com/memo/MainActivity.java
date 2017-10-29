@@ -17,6 +17,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mListView = (ListView) findViewById(R.id.listView);
 
-        mCard = new ArrayList<Card>();
+        mCard = new LinkedList<>();
         imagedata = getSharedPreferences("DataSave", MODE_PRIVATE);
         strdata = getSharedPreferences("StrSave", MODE_PRIVATE);
 
@@ -94,9 +95,23 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int size = mCard.size();
+                Card card = mCard.get(position);
+                mCard.add(size, card);
+                mCard.remove(position);
+                mCardAdapter.notifyDataSetChanged();
+                String key = card.getKey();
+                strdata.edit().remove(key).apply();
+                imagedata.edit().remove(key).apply();
+            }
+        });
 
 
     }
+
 
 
 }
