@@ -62,14 +62,6 @@ public class CardAdapter extends ArrayAdapter<Card> {
 
             viewHoler.titleTextView.setText(item.tittle);
             viewHoler.iconImageView.setImageBitmap(item.image);
-            viewHoler.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    Toast.makeText(getContext(), "remove", Toast.LENGTH_SHORT).show();
-                    mCards.remove(position);
-                    return false;
-                }
-            });
         }
 
         return convertView;

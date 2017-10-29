@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     CardAdapter mCardAdapter;
     List<Card> mCard;
 
+    SharedPreferences strdata;
+    SharedPreferences imagedata;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.listView);
 
         mCard = new ArrayList<Card>();
-        SharedPreferences imagedata = getSharedPreferences("DataSave", MODE_PRIVATE);
-        SharedPreferences strdata = getSharedPreferences("StrSave", MODE_PRIVATE);
+        imagedata = getSharedPreferences("DataSave", MODE_PRIVATE);
+        strdata = getSharedPreferences("StrSave", MODE_PRIVATE);
 
         ArrayList<String> list = new ArrayList<String>();
         Map prefAll = imagedata.getAll();
@@ -63,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             // カードの追加
-            mCard.add(new Card(bitmap, memoStr));
+            mCard.add(new Card(bitmap, memoStr, key));
         }
 
 
@@ -77,6 +80,20 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                mCard.remove(position);
+                mCardAdapter.notifyDataSetChanged();
+                // ここ復習
+                Card card = mCard.get(position);
+                String key = card.getKey();
+                strdata.edit().remove(key).apply();
+                imagedata.edit().remove(key).apply();
+                // ここまで
+                return true;
+            }
+        });
 
 
     }
