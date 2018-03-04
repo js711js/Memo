@@ -8,17 +8,17 @@ import android.graphics.Bitmap;
 
 public class Card {
     public Bitmap image;
-    public String tittle;
+    public String title;
     public String content;
     public int likeNum = 0;
-    public String fileName;
+    public String key;
 
     public String meaning;
 
-    public Card(Bitmap image, String tittle, String fileName) {
+    public Card(Bitmap image, String title, String key) {
         this.image = image;
-        this.tittle = tittle;
-        this.fileName = fileName;
+        this.title = title;
+        this.key = key;
     }
 
     public Bitmap getImage() {
@@ -26,7 +26,7 @@ public class Card {
     }
 
     public String getKey() {
-        return fileName;
+        return key;
     }
 
 }

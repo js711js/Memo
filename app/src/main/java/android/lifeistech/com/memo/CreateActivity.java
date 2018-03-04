@@ -43,10 +43,14 @@ public class CreateActivity extends AppCompatActivity {
         // Edittextの文字を撮ってきて、SharedPreferencesに保存
         SharedPreferences data = getSharedPreferences("StrSave", MODE_PRIVATE);
         SharedPreferences.Editor editor = data.edit();
-        editor.putString(getIntent().getStringExtra("fileName"), text.getText().toString());
+        editor.putString(getIntent().getStringExtra("key"), text.getText().toString());
         editor.apply();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
     }
 }

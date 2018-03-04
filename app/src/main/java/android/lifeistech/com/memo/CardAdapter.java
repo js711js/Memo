@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -60,7 +59,7 @@ public class CardAdapter extends ArrayAdapter<Card> {
             //ここでImageViewとかTextViewに値をセット
             // comment
 
-            viewHoler.titleTextView.setText(item.tittle);
+            viewHoler.titleTextView.setText(item.title);
             viewHoler.iconImageView.setImageBitmap(item.image);
         }
 

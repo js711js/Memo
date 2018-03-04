@@ -85,7 +85,7 @@ public class TopActivity extends AppCompatActivity {
             imageView1.setImageBitmap(capturedImage);
             Intent intent = new Intent(getApplication(), CreateActivity.class);
             intent.putExtra("captureImage", capturedImage);
-            intent.putExtra("fileName", fileName);
+            intent.putExtra("key", fileName);
             startActivity(intent);
 
         }
